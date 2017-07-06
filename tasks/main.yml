@@ -1,16 +1,25 @@
 
-#configure fail2ban jail rules
+#install fail2ban
+-name: "Install fail2ban"
+ apt: pkg=fail2ban state=present
 
+#check if syslog is started
+-name: Ensure syslog is started
+ service: name=rsyslog state=restarted
+
+
+#configure fail2ban jail rules
 -name: Copy fail2ban configuration into place
  template: src=fail2ban.j2 dest=/etc/fail2ban/fail2ban.conf owner=root group=root mode=0644
  notify:
  -restart fail2ban
  
-
 -name: Copy jail configuration into place
  template: src=jail.j2 dest=/etc/fail2ban/jail.local owner=root group=root mode=0644
  notify: 
  -restart fail2ban
 
+
+#check if fail2ban is running
 -name: ensure fail2ban is running
  service: name=fail2ban state=started enabled=yes

@@ -6,7 +6,7 @@ An ansible role for installing and configuring fail2ban on debian systems.
     ---
     - hosts: all
       remote_user: root
-      roles: yattol.fail2ban
+      roles: Fail2bansible
 
 
 

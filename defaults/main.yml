@@ -1,12 +1,4 @@
 ---
-#install fail2ban
--name: "Install fail2ban"
- apt: pkg=fail2ban state=present
-
-#check if syslog is started
--name: Ensure syslog is started
- service: name=rsyslog state=restarted
-
 # Enable service on boot
 fail2ban_service_enabled: yes
 
